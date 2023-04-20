@@ -4,7 +4,6 @@ import { Weather } from "./components/weather/weather";
 
 export class App extends Component {
   render() {
-    document.title = 'Weather report';
     return (
       <div className="App">
         <Weather />
