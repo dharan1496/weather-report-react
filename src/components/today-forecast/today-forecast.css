@@ -1,0 +1,27 @@
+.today-forecast-container {
+    margin-top: 24px;
+    padding: 24px 32px;
+    border-radius: 20px;
+    background-color: #2f3247;
+}
+
+.today-forecast-header {
+    margin-top: 0;
+    text-align: left;
+}
+
+.today-forecast-section {
+    padding: 24px 0 32px 0;
+    display: flex;
+    overflow-x: scroll;
+    width: 100%;
+}
+
+.today-forecast-section > div:not(:first-child) {
+    padding-left: 16px;
+}
+
+.today-forecast-section > div:not(:last-child) {
+    padding-right: 16px;
+    border-right: 1px solid rgba(255, 255, 255, 0.2);
+}

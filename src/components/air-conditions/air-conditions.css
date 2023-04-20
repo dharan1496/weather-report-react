@@ -1,0 +1,25 @@
+.air-conditions-container {
+    padding: 24px 32px;
+    border-radius: 20px;
+    background-color: #2f3247;
+}
+
+.air-conditions-header {
+    margin-top: 0;
+    text-align: left;
+}
+
+.air-conditions-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
+.air-conditions-grid * {
+    text-align: left;
+}
+
+.air-conditions-grid > div > label {
+    display: block;
+    margin-bottom: 4px;
+}

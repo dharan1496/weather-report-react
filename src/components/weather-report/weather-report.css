@@ -1,0 +1,32 @@
+.weather-report-container {
+    padding: 24px 32px;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 25px;
+}
+
+.weather-report-container section {
+    text-align: left;
+}
+
+.weather-report-temp {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.weather-report-temp div {
+    font-size: 60px;
+    font-weight: 500;
+}
+
+.weather-report-location {
+    font-size: 28px;
+    margin-top: 14px;
+}
+
+.weather-report-temp img {
+    width: 75px;
+    height: 75px;
+}

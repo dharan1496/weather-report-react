@@ -1,0 +1,34 @@
+.seven-forecast-container {
+    margin-top: 24px;
+    padding: 12px 16px;
+    border-radius: 20px;
+    background-color: #2f3247;
+}
+
+.seven-forecast-header {
+    margin-top: 16px;
+    margin-left: 32px;
+    text-align: left;
+}
+
+.seven-forecast-section {
+    padding: 12px 32px 32px 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.seven-forecast-section > div:not(:first-child) {
+    padding-top: 4px;
+}
+
+.seven-forecast-section > div:not(:last-child) {
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.seven-forecast-day {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
