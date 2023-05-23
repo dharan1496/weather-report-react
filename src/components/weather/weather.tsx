@@ -6,8 +6,9 @@ import { TodayForecast } from "../today-forecast/today-forecast";
 import { SevenDayForecast } from "../7-day-forecast/7-day-forecast";
 
 export const Weather = () => {
-  const [city, setCity] = useState("chennai");
+  const [city, setCity] = useState("");
   const [data, setData] = useState(null);
+  const [loader, setLoader] = useState(false);
 
   const search = () => {
     getData();
@@ -17,36 +18,66 @@ export const Weather = () => {
   useEffect(() => getData(), []);
 
   const getData = () => {
+    // testQuery();
     setData(null);
+    setLoader(true);
     fetch(
-      `http://api.weatherapi.com/v1/forecast.json?key=c50138e788d0428fa5c71216231904&q=${city}&days=7&aqi=yes`
+      `http://api.weatherapi.com/v1/forecast.json?key=c50138e788d0428fa5c71216231904&q=${
+        city || "chennai"
+      }&days=7&aqi=yes`
     )
       .then((response: any) => response.json())
-      .then((json: any) => setData(json));
+      .then(setData)
+      .then(() => setLoader(false));
+  };
+
+  const testQuery = () => {
+    const query = `
+    query {
+      allLifts {
+        name
+      }
+    }
+    `;
+    const options: RequestInit = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ query }),
+    };
+    fetch("https://snowtooth.moonhighway.com/", options)
+      .then((response) => response.json())
+      .then(console.log);
   };
 
   let element = <div className="loader">Loading...</div>;
-  if (data && data['error']) {
-    element = <div className="error">Error Occured! Please try again with different value.</div>;
-  } else if (data) {
-    element = (
-      <div className="weather-sections">
-        <div>
-          <WeatherReport data={data} />
-          <AirConditions data={data} />
-          <TodayForecast data={data} />
+  if (!loader && data) {
+    if ("error" in data) {
+      element = (
+        <div className="error">
+          Error Occured! Please try again with different value.
         </div>
-        <div>
-          <SevenDayForecast data={data} />
+      );
+    } else {
+      element = (
+        <div className="weather-sections">
+          <div>
+            <WeatherReport  data={data} />
+            <AirConditions data={data} />
+            <TodayForecast data={data} />
+          </div>
+          <div>
+            <SevenDayForecast data={data} />
+          </div>
         </div>
-      </div>
-    );
+      );
+    }
   }
 
   return (
     <div className="weather-container">
       <section className="weather-container-section">
         <input
+          data-testid="city"
           type="text"
           placeholder="search for cities"
           onChange={(e) => setCity(e.target.value)}
